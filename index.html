@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo activity</title>
+    <script src="https://cdn.jsdelivr.net/gh/educentre-integration/libraries@latest/activity/vs1.js"></script>
+</head>
+<body>
+    <div id="student-fullname"></div>
+    <div>
+        <button onclick="start()">Récupérer le nom</button>
+    </div>
+    <div>
+        <button onclick="sendScore()">Envoyer la note de 16 / 20</button>
+    </div>
+
+    <script>
+        const edac = new EducentreActivity();
+
+        function start() {
+            edac.getStorage((response) => {
+                console.log(response);
+                document.querySelector('#student-fullname').innerHTML = response.student.fullname;
+
+            });
+        }
+
+        function sendScore() {
+            edac.sendScore(0.8, (response) => {
+                console.log(response);
+            });
+        }
+
+    </script>
+</body>
+</html>
